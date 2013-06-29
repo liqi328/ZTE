@@ -15,7 +15,7 @@ import cn.com.zte.graph.Path;
  * @author Liqi
  *
  */
-public class NoCommonNodeSearchStrategy implements SearchStrategy {
+public class NoCommonNodeSearchStrategy extends AbstractSearchStrategy {
 	/** 
 	 * 基于广度优先搜索的备用路径搜索算法
 	 */

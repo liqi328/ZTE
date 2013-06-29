@@ -18,9 +18,9 @@ import cn.com.zte.graph.Path;
  */
 public abstract class AbstractPathSearcher {
 	protected Path<String> masterPath = null;
-	protected SearchStrategy searchStrategy = null;
+	protected AbstractSearchStrategy searchStrategy = null;
 	
-	public void setSearchStrategy(SearchStrategy searchStrategy){
+	public void setSearchStrategy(AbstractSearchStrategy searchStrategy){
 		this.searchStrategy = searchStrategy;
 	} 
 	

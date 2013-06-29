@@ -11,7 +11,7 @@ import cn.com.zte.graph.Path;
  * @author Liqi
  *
  */
-public interface SearchStrategy {
+public abstract class AbstractSearchStrategy {
 
 	/**
 	 * 搜索源点到终点的备用路径
@@ -22,5 +22,5 @@ public interface SearchStrategy {
 	 * @param masterPath	主路径
 	 * @return
 	 */
-	public Path<String> search(String source, String dest, Graph g, Path<String> masterPath);
+	public abstract Path<String> search(String source, String dest, Graph g, Path<String> masterPath);
 }

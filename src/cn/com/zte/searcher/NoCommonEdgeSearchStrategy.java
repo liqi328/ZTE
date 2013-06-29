@@ -15,7 +15,7 @@ import cn.com.zte.graph.Path;
  * @author Liqi
  *
  */
-public class NoCommonEdgeSearchStrategy implements SearchStrategy {
+public class NoCommonEdgeSearchStrategy extends AbstractSearchStrategy {
 	
 	@Override
 	public Path<String> search(String source, String dest, Graph g, Path<String> masterPath) {

@@ -8,7 +8,7 @@ import cn.com.zte.searcher.BfsPathSearcher;
 import cn.com.zte.searcher.DfsPathSearcher;
 import cn.com.zte.searcher.NoCommonEdgeSearchStrategy;
 import cn.com.zte.searcher.NoCommonNodeSearchStrategy;
-import cn.com.zte.searcher.SearchStrategy;
+import cn.com.zte.searcher.AbstractSearchStrategy;
 
 public class TestZTE {
 	public static void main(String[] args){
@@ -52,7 +52,7 @@ public class TestZTE {
 	private static void run_bfs(String source, String dest, Graph g){
 		System.out.println("Nodes: " + g.getNodeNum() + ", Edges: " + g.getEdgeNum());
 		AbstractPathSearcher searcher = new BfsPathSearcher();
-		SearchStrategy searchStrategy = new NoCommonNodeSearchStrategy();
+		AbstractSearchStrategy searchStrategy = new NoCommonNodeSearchStrategy();
 		searcher.setSearchStrategy(searchStrategy);
 		
 		Path<String> masterPath = searcher.findMasterPath(source, dest, g);
