@@ -25,12 +25,13 @@ public class BfsPathSearcher extends AbstractPathSearcher {
 	 */
 	@Override
 	public Path<String> findBackupPath(String source, String dest, Graph g) {
-		if(masterPath == null)return null;
+		if(masterPath == null || searchStrategy == null)return null;
 		return searchStrategy.search(source, dest, g, masterPath);
 	}
 	
 	/**
-	 * 搜索主路径(即最短路径)
+	 * 搜索主路径(即最短路径)<br />
+	 * 基于广度优先搜索的主路径搜索算法<br />
 	 * @param source
 	 * @param dest
 	 * @param g

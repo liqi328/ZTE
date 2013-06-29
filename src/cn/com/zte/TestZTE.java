@@ -18,11 +18,11 @@ public class TestZTE {
 	
 	private static void testSmall(){
 		System.out.println("------------------ test Small data ------------------------");
-		//String graphFilename = "E:/MyCode/ZTE/inputdata/graph.txt";
-		String graphFilename = "E:/MyCode/ZTE/inputdata/test.txt";
+		String graphFilename = "E:/MyCode/ZTE/inputdata/graph.txt";
+		//String graphFilename = "E:/MyCode/ZTE/inputdata/test.txt";
 		Graph g = GraphReader.read(graphFilename);
-		String source = "12";
-		String dest = "10";
+		String source = "20";
+		String dest = "32";
 		
 		//run_dfs(source, dest, g);
 		run_bfs(source, dest, g);
@@ -52,18 +52,21 @@ public class TestZTE {
 	private static void run_bfs(String source, String dest, Graph g){
 		System.out.println("Nodes: " + g.getNodeNum() + ", Edges: " + g.getEdgeNum());
 		AbstractPathSearcher searcher = new BfsPathSearcher();
-		AbstractSearchStrategy searchStrategy = new NoCommonNodeSearchStrategy();
-		searcher.setSearchStrategy(searchStrategy);
+		//AbstractSearchStrategy searchStrategy = new NoCommonNodeSearchStrategy();
+		AbstractSearchStrategy[] searchStrategy = new AbstractSearchStrategy[2];
+		searchStrategy[0] = new NoCommonNodeSearchStrategy();
+		searchStrategy[1] = new NoCommonEdgeSearchStrategy();
+		searcher.setSearchStrategy(searchStrategy[0]);
 		
 		Path<String> masterPath = searcher.findMasterPath(source, dest, g);
 		Path<String> backupPath = searcher.findBackupPath(source, dest, g);
 		
 		System.out.println("main: " + masterPath);
-		System.out.println("backup: " + backupPath);
+		System.out.println("node backup: " + backupPath);
 		
-		searchStrategy = new NoCommonEdgeSearchStrategy();
-		searcher.setSearchStrategy(searchStrategy);
+		//searchStrategy = new NoCommonEdgeSearchStrategy();
+		searcher.setSearchStrategy(searchStrategy[1]);
 		backupPath = searcher.findBackupPath(source, dest, g);
-		System.out.println("backup: " + backupPath);
+		System.out.println("edge backup: " + backupPath);
 	}
 }
