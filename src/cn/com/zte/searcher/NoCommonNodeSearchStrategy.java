@@ -1,12 +1,7 @@
 package cn.com.zte.searcher;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Set;
 
-import cn.com.zte.graph.Graph;
 import cn.com.zte.graph.Path;
 
 /**
@@ -16,35 +11,21 @@ import cn.com.zte.graph.Path;
  *
  */
 public class NoCommonNodeSearchStrategy extends AbstractSearchStrategy {
-	/** 
-	 * 基于广度优先搜索的备用路径搜索算法
+	/**
+	 * 判断当前结点curNode是否可以访问<br />
+	 * 判定规则：1) curNode 未被访问<br /> 2) 除源点和终点外,curNode未出现在masterPath中
+	 * 
+	 * @param visited		已访问的结点集合
+	 * @param masterPath	主路径
+	 * @param curNode		当前结点
+	 * @param preNode		当前结点的前一个被访问的节点
+	 * @param dest			终点
+	 * @return
 	 */
 	@Override
-	public Path<String> search(String source, String dest, Graph g, Path<String> masterPath) {
-		Queue<Node<String>> queue = new LinkedList<Node<String>>();
-		queue.offer(new Node<String>(null, source, 0));
-		
-		Set<String> visited = new HashSet<String>();
-		Path<String> backupPath = null;
-		
-		while(!queue.isEmpty()){
-			Node<String> cur = queue.poll();
-			if(cur.name.equals(dest)){
-				backupPath = Node.generatePath(cur);
-				backupPath.reverse();
-				break;
-			}else{
-				Iterator<String> itr = g.getNeighborsIterator(cur.name);
-				while(itr.hasNext()){
-					String adjNode = itr.next();
-					if(!visited.contains(adjNode) && (adjNode.equals(dest) || !masterPath.contains(adjNode))){
-						visited.add(adjNode);
-						queue.offer(new Node<String>(cur, adjNode, cur.level + 1));
-					}
-				}
-			}
-		}
-		return backupPath;
+	protected boolean isCanVisited(Set<String> visited, Path<String> masterPath,
+			String curNode, Node<String> preNode, String dest) {
+		return !visited.contains(curNode) && (curNode.equals(dest) || !masterPath.contains(curNode));
 	}
 
 }
