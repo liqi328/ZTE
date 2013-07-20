@@ -48,12 +48,21 @@ public class Main {
 		Path<String> backupPath = searcher.findBackupPath(arg.source, arg.dest, g);
 		
 		StringBuffer sb = new StringBuffer();
-		sb.append("main: ").append(masterPath.toString()).append("\r\n");
-		sb.append("backup: ").append(backupPath.toString()).append("\r\n");
+		sb.append("main: ");
+		if(masterPath != null){
+			sb.append(masterPath.toString());
+		}
+		sb.append("\r\n");
+		
+		sb.append("backup: ");
+		if(backupPath != null){
+			sb.append(backupPath.toString());
+		}
+		sb.append("\r\n");
 		
 		write(arg.outputFilename, sb.toString());
 		
-		System.out.println(sb.toString());
+		//System.out.println(sb.toString());
 	}
 	
 	private static void write(String filename, String content){

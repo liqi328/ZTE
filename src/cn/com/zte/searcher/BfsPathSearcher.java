@@ -42,7 +42,7 @@ public class BfsPathSearcher extends AbstractPathSearcher {
 		queue.offer(new Node<String>(null, source, 0));
 		
 		Set<String> visited = new HashSet<String>();
-		
+		visited.add(source);
 		while(!queue.isEmpty()){
 			Node<String> cur = queue.poll();
 			if(cur.name.equals(dest)){

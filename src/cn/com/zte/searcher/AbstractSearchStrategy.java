@@ -38,6 +38,7 @@ public abstract class AbstractSearchStrategy {
 		queue.offer(new Node<String>(null, source, 0));
 		
 		Set<String> visited = new HashSet<String>();
+		visited.add(source);
 		Path<String> backupPath = null;
 		
 		while(!queue.isEmpty()){
